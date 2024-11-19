@@ -1,6 +1,5 @@
 "use client"
-import React, { useEffect } from "react";
-import Posts from "@/components/Posts";
+import React, { useEffect, useState } from "react";
 import PromptCard from "@/components/card";
 
 const Feed = () => {
@@ -11,44 +10,44 @@ const Feed = () => {
     setSearchText(e.target.value);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchPost = async () => {
       const res = await fetch('/api/prompt');
-      setPost(res);
-    }
+      const data = await res.json();
+      setPost(data);
+    };
 
     fetchPost();
-  },[]);
+  }, []);
 
-  const PromptCardList = ({data, handleTagClick}) => {
+  const PromptCardList = ({ posts, handleTagClick }) => {
     return (
       <div className="mt-16 prompt_layout">
-        {
-            data.map((post)=>{
-              <PromptCard
-                post={post}
-                key={post._id}
-                handleTagClick={handleTagClick}
-              />
-            })
-        }
+        {posts.map((post) => (
+          <PromptCard
+            post={post}
+            key={post._id}
+            handleTagClick={handleTagClick}
+          />
+        ))}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <section className="feed">
-      <form className="realtive w-full flex-center"></form>
-      <input
-        type="text"
-        placeholder="Search for a tag or username"
-        value={searchText}
-        onChange={handleSearchChange}
-        required
-        className="search_input peer"
-      />
-
-      <PromptCardList data={post} handleTagClick={() => {}} />
+      <form className="relative w-full flex-center">
+        <input
+          type="text"
+          placeholder="Search for a tag or username"
+          value={searchText}
+          onChange={handleSearchChange}
+          required
+          className="search_input peer"
+        />
+      </form>
+      
+      <PromptCardList posts={post} handleTagClick={() => {}} />
     </section>
   );
 };

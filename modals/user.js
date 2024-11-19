@@ -13,12 +13,12 @@ const userSchema = new Schema({
   image:{
     type:String
   },
-  posts:{
+  posts:[{
     type : mongoose.Schema.Types.ObjectId,
     ref:'Prompt',
-  },
+  }],
 });
 
-const User = models.User || model("User" , userSchema);
+const User = models.users || model("users" , userSchema);
 
 export default User;

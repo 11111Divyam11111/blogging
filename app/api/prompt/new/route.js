@@ -1,5 +1,6 @@
 import { connectToDB } from "@/utils/db";
 import Prompt from "@/modals/prompt";
+
 export const POST = async (req) => {
   const { userId, prompt, description } = await req.json();
 
@@ -8,7 +9,7 @@ export const POST = async (req) => {
     const newPrompt = new Prompt({
       description,
       creator: userId,
-      prompt
+      prompt,
     });
 
     await newPrompt.save();
@@ -17,6 +18,7 @@ export const POST = async (req) => {
       status: 201,
     });
   } catch (error) {
-    return new Response("Failed to create a new prompt",{status:500})
+    console.error("Error creating prompt:", error);
+    return new Response("Failed to create a new prompt", { status: 500 });
   }
 };

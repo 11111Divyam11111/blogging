@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
-  const {data : session } = useSession();
+  const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -27,6 +27,7 @@ const Navbar = () => {
           width={30}
           height={30}
           className="object-contain"
+          alt="logo"
         />
         <p className="logo_text">Blogging</p>
       </Link>
@@ -34,6 +35,9 @@ const Navbar = () => {
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
+            <Link href="/feed" className="outline_btn">
+              Feed
+            </Link>
             <Link href="/create-blog" className="black_btn">
               Create Post
             </Link>
@@ -94,8 +98,17 @@ const Navbar = () => {
                   onClick={() => setToggleDropdown(false)}
                 >
                   Create Blog
-                </Link> 
-                <button type="button" onClick={()=>{setToggleDropdown(false); signOut();}} className="mt-5 w-full black_btn">Sign out</button>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToggleDropdown(false);
+                    signOut();
+                  }}
+                  className="mt-5 w-full black_btn"
+                >
+                  Sign out
+                </button>
               </div>
             )}
           </div>
