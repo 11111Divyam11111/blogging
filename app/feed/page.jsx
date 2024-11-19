@@ -3,13 +3,12 @@ import React, { useEffect, useState } from "react";
 import PromptCard from "@/components/card";
 
 const Page = () => {
-  const [searchText, setSearchText] = useState("");
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch("/api/prompt/");
+        const res = await fetch("/api/prompt");
         if (!res.ok) throw new Error("Failed to fetch prompts");
 
         const data = await res.json();

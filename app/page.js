@@ -15,6 +15,7 @@ const Home = () => {
         with a vibrant network of readers and writers. Join the conversation
         today!
       </p>
+      <Feed/>
     </section>
   );
 };

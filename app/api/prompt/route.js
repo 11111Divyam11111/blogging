@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     await connectToDB();
-    const prompts = await Prompt.find({}).sort({createdAt : -1}).populate('creator','username image email');
+    const prompts = await Prompt.find({}).populate('creator','username image email');
     console.log(prompts);
     return NextResponse.json(prompts);
   } catch (error) {
