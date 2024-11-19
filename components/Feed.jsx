@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect } from "react";
 import Posts from "@/components/Posts";
 import PromptCard from "@/components/card";
