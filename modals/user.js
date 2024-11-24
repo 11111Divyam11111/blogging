@@ -1,4 +1,4 @@
-import mongoose,{ Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 const userSchema = new Schema({
   email: {
@@ -6,19 +6,17 @@ const userSchema = new Schema({
     unique: [true, "email already exists!"],
     required: [true, "email is required!"],
   },
-  username: { 
-    type: String, 
-    require: [true, "Username is required!"], 
-},
-  image:{
-    type:String
+  username: {
+    type: String,
+    require: [true, "Username is required!"],
   },
-  posts:[{
-    type : mongoose.Schema.Types.ObjectId,
-    ref:'Prompt',
-  }],
+  image: {
+    type: String,
+  },
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Prompt' }],
+  saved: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Prompt' }],
 });
 
-const User = models.User || model("User" , userSchema);
+const User = models.User || model("User", userSchema);
 
 export default User;

@@ -2,22 +2,17 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import React from "react";
-import Navbar from "@/components/Navbar";
-import Image from "next/image";
+import Posts from "@/components/Posts";
+import Saved from "@/components/Saved";
 
 export default function page({ name, img, email }) {
-  const {data:session} = useSession();
+  const { data: session } = useSession();
+  console.log('user id here is : ' , session?.user.id);
   return (
     <div>
-      <div className="text-center">
-        <p>Name : {session?.user.name}</p>
-        <p>Email : {session?.user.email}</p>
-        <p>ID : {session?.user.id}</p>
-        {/* <div>
-          posts : {session?.user.posts.populate()}
-        </div> */}
-
-      </div>
+      <h1 className="text-center text-3xl italic font-mono">Hello {session?.user.name} 👋👋</h1>
+      <Posts userId={session?.user.id} />
+      <Saved userId={session?.user.id} />
     </div>
   );
 }

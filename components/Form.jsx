@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+
   return (
     <section className="w-full flex-start flex-col max-w-full">
       <h1 className="head_text text-left">
@@ -32,20 +33,25 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           </span>
           <textarea
             value={post.post}
-            onChange={(e) => setPost({ ...post, description: e.target.value })}
+            onChange={(e) =>
+              setPost({ ...post, description: e.target.value})
+            }
             placeholder="write here"
             className="form_textarea"
           />
         </label>
         <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href='/' className="text-gray-500 text-sm">
+          <Link href="/" className="text-gray-500 text-sm">
             Cancel
           </Link>
 
-          <button type="submit" disabled={submitting} className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white">
+          <button
+            type="submit"
+            disabled={submitting}
+            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+          >
             {submitting ? `${type}` : type}
           </button>
-
         </div>
       </form>
     </section>

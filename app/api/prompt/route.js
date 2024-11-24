@@ -6,7 +6,6 @@ export const GET = async () => {
   try {
     await connectToDB();
     const prompts = await Prompt.find({}).populate('creator','username image email');
-    console.log(prompts);
     return NextResponse.json(prompts);
   } catch (error) {
     console.error("Error fetching prompts:", error);
