@@ -34,6 +34,10 @@ const handler = NextAuth({
             image: profile.picture,
             posts : [],
             saved : [],
+            followers : [],
+            following : [],
+            followersCount : 0,
+            followingCount : 0,
           });
         }
 

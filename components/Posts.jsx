@@ -18,7 +18,7 @@ const Posts = ({ userId }) => {
         console.error("Failed to fetch posts", res);
       } else {
         const data = await res.json();
-        setPosts(data);
+        setPosts(data.posts);
       }
     };
     
@@ -31,7 +31,7 @@ const Posts = ({ userId }) => {
       {posts.length > 0 && (
         <>
           <h1 className="mb-10 text-left text-xl underline mt-10">
-            Your Posts
+             Posts
           </h1>
 
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center">

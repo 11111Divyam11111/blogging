@@ -8,9 +8,10 @@ export const PUT = async (req) => {
     const { id, user } = await req.json();
     const banda = await User.findOne({ _id: user });
     const post = await Prompt.findOne({ _id: id });
-
+   
     if (!banda.saved.includes(post._id)) {
       banda.saved.push(post._id);
+     
       await banda.save();
     }
     else{
@@ -19,10 +20,11 @@ export const PUT = async (req) => {
       (postId) => postId.toString() !== id.toString()
     );
     banda.saved = SavedArray;
+   
     await banda.save();
     }
 
-    return new Response("hehe", { status: 201 });
+    return new Response('hehe', { status: 201 });
   } catch (err) {
     console.error("Error updating likes:", err);
     return new Response("Failed to update likes", { status: 500 });

@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
         </div>
 
         <main className="app">
-        <Navbar/>
+          <Navbar/>
           {children}
         </main>
       </Provider>

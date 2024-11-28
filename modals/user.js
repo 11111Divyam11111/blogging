@@ -15,6 +15,14 @@ const userSchema = new Schema({
   },
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Prompt' }],
   saved: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Prompt' }],
+  followersCount : {
+    type:Number,
+  },
+  followingCount: {
+    type:Number,
+  },
+  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
 const User = models.User || model("User", userSchema);

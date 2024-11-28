@@ -7,6 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
+  const id = session?.user.id;
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -44,7 +45,7 @@ const Navbar = () => {
             <button type="button" onClick={signOut} className="outline_btn">
               Sign out
             </button>
-            <Link href="/profile">
+            <Link href={'/profile'}>
               <Image
                 src={session?.user.image}
                 width={37}
@@ -86,7 +87,7 @@ const Navbar = () => {
             {toggleDropdown && (
               <div className="dropdown">
                 <Link
-                  href="/profile"
+                 href={'/profile'}
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
@@ -98,6 +99,13 @@ const Navbar = () => {
                   onClick={() => setToggleDropdown(false)}
                 >
                   Create Blog
+                </Link>
+                <Link
+                  href="/feed"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Feed
                 </Link>
                 <button
                   type="button"
@@ -125,6 +133,7 @@ const Navbar = () => {
                   Sign in
                 </button>
               ))}
+              
           </>
         )}
       </div>

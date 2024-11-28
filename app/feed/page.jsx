@@ -8,14 +8,17 @@ const Page = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch("/api/prompt");
-        if (!res.ok) throw new Error("Failed to fetch prompts");
-        const data = await res.json();
-        setFeed(data);
+          const res = await fetch("/api/prompt");
+          
+          if (!res.ok) throw new Error("Failed to fetch prompts");
+  
+          const data = await res.json();
+          setFeed(data);
       } catch (error) {
-        console.error("Error fetching posts:", error);
+          console.error("Error fetching posts:", error);
       }
-    };
+  };
+  
 
     fetchPost();
   }, []);
@@ -26,7 +29,7 @@ const Page = () => {
     <>
       {feed.length === 0 ? (
         <>
-          <h1 className="text-center font-bold text-2xl">Sorry! No posts to show 😴</h1>{" "}
+          <h1 className="text-center font-bold text-2xl">Sorry! No posts to show 😴</h1>
         </>
       ) : (
         <>

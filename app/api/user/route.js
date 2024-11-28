@@ -7,6 +7,7 @@ export const POST = async (req) => {
     console.log("Connecting to DB...");
     await connectToDB();
     const { userId } = await req.json();
+    console.log(userId);
     console.log("Fetched userId:", userId);
     
     const user = await User.findOne({ _id: userId }).populate("posts");
@@ -16,7 +17,7 @@ export const POST = async (req) => {
       return new Response("User not found", { status: 404 });
     }
 
-    return NextResponse.json(user.posts); // Return only the user's posts
+    return NextResponse.json(user); 
   } catch (error) {
     console.error("Error fetching posts:", error);
     return new Response("Failed to fetch", { status: 500 });
