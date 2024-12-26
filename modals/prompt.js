@@ -20,10 +20,10 @@ const promptSchema = new Schema({
   },
   likeArr: [{ 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: "User" 
+    ref: 'User', 
   }],
 });
 
-const Prompt = models.Prompt || model("Prompt", promptSchema);
+const Prompt = models.Prompt || model('Prompt', promptSchema);
 
 export default Prompt;

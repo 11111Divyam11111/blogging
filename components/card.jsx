@@ -81,22 +81,7 @@ const card = ({ post, handleTagClick, handleEdit }) => {
   };
 
   const handleGoToOtherProfile = async () => {
-    try {
-      const response = await fetch("/api/user/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId }),
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to fetch user profile.");
-      }
-      const userData = await response.json();
-      router.push(`/banda/${userId}`);
-    } catch (error) {
-      console.error("Error navigating to profile:", error);
-      alert("Unable to navigate to the user profile. Please try again later.");
-    }
+    router.push(`/banda/${userId}`);
   };
 
   return (

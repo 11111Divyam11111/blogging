@@ -8,7 +8,7 @@ const Page = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-          const res = await fetch("/api/prompt");
+          const res = await fetch("https://blogging-a66j.vercel.app/api/prompt");
           
           if (!res.ok) throw new Error("Failed to fetch prompts");
   
